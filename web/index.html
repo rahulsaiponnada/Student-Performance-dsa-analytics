@@ -1,0 +1,432 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Analytics | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">SA</div>
+            <div>
+                <h2>Student Analytics</h2>
+                <span>PERFORMANCE SYSTEM</span>
+            </div>
+        </div>
+
+        <p class="nav-heading">MAIN MENU</p>
+
+        <nav>
+            <a class="active" href="#dashboard">
+                <span class="nav-icon">▦</span> Dashboard
+            </a>
+            <a href="#students">
+                <span class="nav-icon">♙</span> Students
+            </a>
+            <a href="#performance">
+                <span class="nav-icon">▤</span> Academic Performance
+            </a>
+            <a href="#dsa">
+                <span class="nav-icon">⌘</span> DSA Tracking
+            </a>
+            <a href="#manage">
+                <span class="nav-icon">＋</span> Manage Records
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-mini-icon">◈</div>
+            <p>Student Performance<br>& DSA Analytics</p>
+            <span>Version 1.0</span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header id="dashboard" class="topbar">
+            <div>
+                <p class="eyebrow">OVERVIEW</p>
+                <h1>Dashboard</h1>
+                <p class="header-description">
+                    Monitor student performance and DSA progress.
+                </p>
+            </div>
+
+            <div class="profile-area">
+                <div class="profile">SA</div>
+                <div>
+                    <strong>Analytics</strong>
+                    <span>Admin Dashboard</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="welcome-panel">
+            <div>
+                <span class="welcome-tag">STUDENT ANALYTICS PLATFORM</span>
+                <h2>Welcome to your dashboard</h2>
+                <p>
+                    Track academic results, monitor coding practice,
+                    and understand student progress in one place.
+                </p>
+            </div>
+            <div class="welcome-decoration">✦</div>
+        </section>
+
+        <section class="stats">
+            <div class="card stat-card">
+                <div class="stat-top">
+                    <div class="stat-icon purple">♙</div>
+                    <span class="stat-label">STUDENTS</span>
+                </div>
+                <h2 id="studentsCount">0</h2>
+                <p>Total registered students</p>
+                <div class="stat-line purple-line"></div>
+            </div>
+
+            <div class="card stat-card">
+                <div class="stat-top">
+                    <div class="stat-icon blue">⌘</div>
+                    <span class="stat-label">DSA PROBLEMS</span>
+                </div>
+                <h2 id="totalProblems">0</h2>
+                <p>Total tracked problems</p>
+                <div class="stat-line blue-line"></div>
+            </div>
+
+            <div class="card stat-card">
+                <div class="stat-top">
+                    <div class="stat-icon green">✓</div>
+                    <span class="stat-label">SOLVED</span>
+                </div>
+                <h2 id="solvedProblems">0</h2>
+                <p>Completed problems</p>
+                <div class="stat-line green-line"></div>
+            </div>
+
+            <div class="card stat-card">
+                <div class="stat-top">
+                    <div class="stat-icon orange">◷</div>
+                    <span class="stat-label">COMPLETION</span>
+                </div>
+                <h2 id="completion">0%</h2>
+                <p>Overall DSA progress</p>
+                <div class="stat-line orange-line"></div>
+            </div>
+        </section>
+        
+        <section class="charts-section" id="analytics">
+            <div class="section-heading">
+                <div>
+                    <h2>Analytics Overview</h2>
+                    <p>Visual insights into academic performance and DSA progress.</p>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>Academic Performance</h3>
+                    <p>Student percentage comparison</p>
+                    <canvas id="academicChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Topic-wise DSA Progress</h3>
+                    <p>Solved problems compared with total problems</p>
+                    <canvas id="topicChart"></canvas>
+                </div>
+
+                <div class="chart-card difficulty-card">
+                    <h3>Difficulty Analysis</h3>
+                    <p>Distribution of Easy, Medium and Hard problems</p>
+                    <canvas id="difficultyChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-grid">
+
+            <div class="panel" id="dsa">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">CODING ACTIVITY</p>
+                        <h2>DSA Progress</h2>
+                    </div>
+                    <span class="section-icon">⌘</span>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Problems completed</span>
+                        <strong id="progressText">0%</strong>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div id="progressFill"></div>
+                    </div>
+                </div>
+
+                <div class="dsa-summary">
+                    <div class="summary-item">
+                        <span class="summary-dot green-dot"></span>
+                        <div>
+                            <h3 id="solvedSummary">0</h3>
+                            <p>Solved</p>
+                        </div>
+                    </div>
+
+                    <div class="summary-item">
+                        <span class="summary-dot orange-dot"></span>
+                        <div>
+                            <h3 id="unsolvedSummary">0</h3>
+                            <p>Unsolved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel topper-panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">ACADEMIC HIGHLIGHT</p>
+                        <h2>Top Performer</h2>
+                    </div>
+                    <span class="section-icon trophy">♛</span>
+                </div>
+
+                <div id="topperDetails">
+                    <p class="placeholder">Loading topper information...</p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="panel manage-panel" id="manage">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">DATA MANAGEMENT</p>
+                    <h2>Manage Records</h2>
+                    <p class="section-description">
+                        Add students, academic marks, and DSA problems.
+                    </p>
+                </div>
+                <span class="section-icon">＋</span>
+            </div>
+
+            <div class="form-grid">
+
+                <form id="studentForm" class="record-form">
+                    <div class="form-title">
+                        <span class="form-icon purple">♙</span>
+                        <h3>Add Student</h3>
+                    </div>
+
+                    <label for="studentName">Student name</label>
+                    <input
+                        id="studentName"
+                        name="name"
+                        type="text"
+                        maxlength="100"
+                        placeholder="Enter student name"
+                        required
+                    >
+
+                    <button type="submit" class="primary-button">
+                        + Add Student
+                    </button>
+                </form>
+
+                <form id="marksForm" class="record-form">
+                    <div class="form-title">
+                        <span class="form-icon blue">▤</span>
+                        <h3>Add Academic Marks</h3>
+                    </div>
+
+                    <label for="marksStudent">Select student</label>
+                    <select id="marksStudent" name="studentId" required>
+                        <option value="">Select student</option>
+                    </select>
+
+                    <label for="subject">Subject</label>
+                    <input
+                        id="subject"
+                        name="subject"
+                        type="text"
+                        maxlength="100"
+                        placeholder="e.g. Data Structures"
+                        required
+                    >
+
+                    <div class="input-row">
+                        <div>
+                            <label for="marks">Marks obtained</label>
+                            <input
+                                id="marks"
+                                name="marks"
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                placeholder="80"
+                                required
+                            >
+                        </div>
+
+                        <div>
+                            <label for="maxMarks">Maximum marks</label>
+                            <input
+                                id="maxMarks"
+                                name="maxMarks"
+                                type="number"
+                                min="0.01"
+                                step="0.01"
+                                placeholder="100"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <button type="submit" class="primary-button blue-button">
+                        + Save Marks
+                    </button>
+                </form>
+
+                <form id="problemForm" class="record-form">
+                    <div class="form-title">
+                        <span class="form-icon green">⌘</span>
+                        <h3>Add DSA Problem</h3>
+                    </div>
+
+                    <label for="problemTitle">Problem title</label>
+                    <input
+                        id="problemTitle"
+                        name="title"
+                        type="text"
+                        maxlength="150"
+                        placeholder="e.g. Two Sum"
+                        required
+                    >
+
+                    <label for="topic">Topic</label>
+                    <input
+                        id="topic"
+                        name="topic"
+                        type="text"
+                        maxlength="100"
+                        placeholder="e.g. Arrays"
+                        required
+                    >
+
+                    <label for="difficulty">Difficulty</label>
+                    <select id="difficulty" name="difficulty" required>
+                        <option value="">Select difficulty</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+
+                    <button type="submit" class="primary-button green-button">
+                        + Add Problem
+                    </button>
+                </form>
+
+            </div>
+
+            <p id="formMessage" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="panel data-panel" id="students">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">STUDENT DATABASE</p>
+                    <h2>Registered Students</h2>
+                </div>
+                <span class="section-icon">♙</span>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STUDENT ID</th>
+                            <th>STUDENT NAME</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTable">
+                        <tr><td colspan="2">Loading students...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="panel data-panel" id="performance">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">ACADEMIC ANALYSIS</p>
+                    <h2>Academic Performance</h2>
+                </div>
+                <span class="section-icon">▤</span>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STUDENT ID</th>
+                            <th>NAME</th>
+                            <th>TOTAL MARKS</th>
+                            <th>MAX MARKS</th>
+                            <th>PERCENTAGE</th>
+                            <th>GRADE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="performanceTable">
+                        <tr><td colspan="6">Loading performance...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="panel data-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">PROBLEM MANAGEMENT</p>
+                    <h2>DSA Problem Tracking</h2>
+                </div>
+                <span class="section-icon">⌘</span>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PROBLEM</th>
+                            <th>TOPIC</th>
+                            <th>DIFFICULTY</th>
+                            <th>STATUS</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody id="problemTable">
+                        <tr><td colspan="5">Loading problems...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>
+            <span>Student Performance & DSA Analytics System</span>
+            <span>Built with Java · MySQL · HTML · CSS</span>
+        </footer>
+
+    </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

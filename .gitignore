@@ -1,0 +1,19 @@
+*.class
+*.log
+.vscode/
+.idea/
+.DS_Store
+# Compiled output
+out/
+
+# MySQL connector library
+lib/*.jar
+
+# Local backup and uploaded archives
+Student Performance DSA Analytics System - backup/
+README_LOCAL_BACKUP.md
+src.zip
+web.zip
+
+# Local environment settings
+.env
